@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   #admin
   devise_for :admins, controllers: {
-   sessions: "admins/sessions"
- }
-  namespace :admins do
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  namespace :admin do
     resources :homes, only: [:top]
     resources :items, only: [:index, :new, :create, :show, :edit, :update,]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -13,9 +15,9 @@ Rails.application.routes.draw do
   end
   #public
   devise_for :publics, controllers: {
-    sessions:      'customers/sessions',
-    passwords:     'customers/passwords',
-    registrations: 'customers/registrations'
+    sessions: 'public/sessions',
+    passwords: 'public/passwords',
+    registrations: 'public/registrations'
   }
     root to: 'public/homes#top'
     get 'about' => 'public/homes#about'
@@ -23,5 +25,6 @@ Rails.application.routes.draw do
     resources :registrations, only: [:new, :create]
     resources :sessions, only: [:new, :create, :destroy]
     resources :customers, only: [:show, :edit, :update,]
-  end
+end
+
  
