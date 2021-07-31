@@ -8,7 +8,7 @@ class Admin::OdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      flash[:notice] = "success"
+      flash[:notice] = "注文ステータスを変更しました"
       redirect_to admin_order_path
     else
         render :show
@@ -19,5 +19,5 @@ class Admin::OdersController < ApplicationController
   
   def order_params
     params.require(:order).permit(:status)
-    
+  end
 end

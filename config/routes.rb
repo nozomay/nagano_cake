@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   end
   #public
   devise_for :publics, controllers: {
-    sessions: 'public/sessions',
-    passwords: 'public/passwords',
-    registrations: 'public/registrations'
+    sessions: 'publics/sessions',
+    passwords: 'publics/passwords',
+    registrations: 'publics/registrations'
   }
     root to: 'public/homes#top'
     get 'about' => 'public/homes#about'
