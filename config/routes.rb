@@ -21,10 +21,10 @@ Rails.application.routes.draw do
   }
     root to: 'public/homes#top'
     get 'about' => 'public/homes#about'
+    scope module: :public do
     resources :items, only: [:index, :show]
-    resources :registrations, only: [:new, :create]
-    resources :sessions, only: [:new, :create, :destroy]
-    resources :customers, only: [:show, :edit, :update,]
+    resource :customers, only: [:show, :edit, :update,]
+    end
 end
 
  
