@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many :orders
   has_many :order_details, dependent: :destroy
   attachment :image
-  
+
   validates :genre_id, :name, :introduction, presence: true
   validates :price, numericality: { only_integer: true }
 end
