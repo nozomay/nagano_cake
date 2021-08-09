@@ -6,8 +6,9 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   namespace :admin do
-    resources :homes, only: [:top]
-    resources :items, only: [:index, :new, :create, :show, :edit, :update,]
+    #resources :homes, only: [:top]
+    root 'homes#top', as: :root
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
   	resources :orders, only: [:show,:update]
