@@ -4,11 +4,11 @@ class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
   end
-    
+
   def new
     @item = Item.new
   end
-  
+
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -18,7 +18,7 @@ class Admin::ItemsController < ApplicationController
       render :new
     end
   end
-  
+
   def show
     @item = Item.find(params[:id])
   end
@@ -26,7 +26,7 @@ class Admin::ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
   end
-  
+
   def update
     if @item.update(item_params)
       flash[:notice] = "商品内容を変更しました"
@@ -35,10 +35,10 @@ class Admin::ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
-  
+
   def item_params
-    params.require(:item).permit(:genre_id, :name, :image_id, :introduction, :price, :is_active)
+    params.require(:item).permit(:genre_id, :name, :image, :introduction, :price, :is_active)
   end
 end
