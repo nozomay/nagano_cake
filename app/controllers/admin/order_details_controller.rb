@@ -1,4 +1,4 @@
-class Admin::OderDetailsController < ApplicationController
+class Admin::OrderDetailsController < ApplicationController
   before_action :authenticate_user!
 
   def update
