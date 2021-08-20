@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #admin
-  devise_for :admins, controllers: {
+  devise_for :admin, controllers: {
     sessions: 'admin/sessions',
     passwords: 'admin/passwords',
     registrations: 'admin/registrations'
@@ -23,9 +23,27 @@ Rails.application.routes.draw do
     root to: 'public/homes#top'
     get 'about' => 'public/homes#about'
     scope module: :public do
-    resources :items, only: [:index, :show]
-    resource :customers, only: [:show, :edit, :update,]
+      resources :items, only: [:index, :show]
+      resource :customers, only: [:show, :edit, :update,] do
+        collection do
+          get 'quit'
+          patch 'out'
+        end
+      end
+      resources :cart_items, only: [:index, :update, :destroy, :create] do
+        collection do
+          delete 'all_destroy'
+        end
+      end
+      resources :orders, only: [:new, :create, :index, :show] do
+        collection do
+          post 'confirm'
+          get 'thanks'
+        end
+      end
+      resources :shipping_addresser, only: [:index, :edit, :create, :update, :destroy]
     end
 end
+
 
 
