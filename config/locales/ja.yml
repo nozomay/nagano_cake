@@ -211,3 +211,21 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+  #enums
+  enums:
+    order:
+      payment_method:
+        credit_card: 'クレジットカード'
+        transfer: '銀行振込'
+      status:
+        unpaid: '入金待ち'
+        paid: '入金確認'
+        making: '製作中'
+        preparation: '発送準備中'
+        shipped: '発送済み'
+    order_details:
+      making_status:
+        notmaking: '製作不可'
+        standby: '製作待ち'
+        making: '製作中'
+        finish: '製作完了'
