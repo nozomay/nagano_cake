@@ -7,4 +7,9 @@ class Item < ApplicationRecord
 
   validates :genre_id, :name, :introduction, presence: true
   validates :price, numericality: { only_integer: true }
+  
+  ## 消費税を求めるメソッド
+  def with_tax_price
+      (price * 1.1).floor
+  end
 end

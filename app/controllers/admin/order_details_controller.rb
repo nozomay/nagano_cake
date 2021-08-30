@@ -1,5 +1,5 @@
 class Admin::OrderDetailsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_!
 
   def update
     @order_detail = OrderDtail.finf(params[:id])

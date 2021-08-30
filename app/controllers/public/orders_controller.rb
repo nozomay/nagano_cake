@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   
   def new #注文情報入力画面(支払方法・配送先の選択)
       @order = Order.new

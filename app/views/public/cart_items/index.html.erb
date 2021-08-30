@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">NAGANO CAKE</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+            <li class="nav-item">
+            <form class="form-inline">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+</nav>
+
+
+<!--数量変更・カート削除の要素を含ませる-->
+<div class="container">
+  <div class="row">
+		<h2>Cart</h2>
+		<div class="pull-right margin-bottom">
+		  <link_to "カートを空にする", customers_cart_items_path, method: :delete, data: {confirm: 'カートを空にして本当によろしいですか？'}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+    </div>
+		<table class="table table-hover table-inverse">
+  		  <div class="col-4">
+  		  <thead>
+          <tr class="info">
+            <th>商品名</th>
+            <th>単価</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+  		    <tbody>
+  		      <% @cart_items.each do |cart_item| %>
+  		      <tr>
+              <td>
+                <%= attachiment_image_tag cart_item.item, :image :fill, 40, 40 %>
+                <%= cart_item.item.id %></td>
+              <td><%= cart_item.item.with_tax_price%></td>
+              <td><%= cart_item.amount %></td>
+              <td><%= cart_item.subtotal%></td>
+              
+              </tr>
+            <% end %>
+          </tbody>
+        </div>
+      </table>
+	</div>
+</div>

@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_!
 
   def index
     @genre = Genre.new
