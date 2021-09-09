@@ -1,5 +1,5 @@
 class Public::ShippingAddressesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_customer!
   
   def index #配送先登録/一覧画面
    @shipping_address = current_customer.shipping_address

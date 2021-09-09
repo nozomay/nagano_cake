@@ -1,8 +1,8 @@
+<%= render "layouts/admin_navbar" %>
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1>管理者画面</h1>
-      <h2>ジャンル一覧</h2>
+      <h1>ジャンル一覧</h1>
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -11,14 +11,13 @@
             <th colspan="1"></th>
           </tr>
         </thead>
-
         <tbody>
           <% @genres.each do |genre| %>
             <tr>
               <td><%= genre.id %></td>
               <td><%= genre.name %></td>
               <td>
-                <%= link_to "編集", edit_admin_genre(genre), class: "btn btn-secondary" %>
+                <%= link_to "編集", edit_admin_genre_path(genre.id), class: "btn btn-secondary" %>
               </td>
             </tr>
           <% end %>

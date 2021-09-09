@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-  before_action :authenticate_!
+  before_action :authenticate_admin!
 
   def index
     @genre = Genre.new
@@ -26,7 +26,7 @@ class Admin::GenresController < ApplicationController
       flash[:notice] = "ジャンルを変更しました"
       redirect_to admin_genres_path
     else
-        render :edit
+      render :edit
     end
   end
   

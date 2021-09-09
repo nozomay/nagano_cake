@@ -1,50 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">NAGANO CAKE</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-            <li class="nav-item">
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </li>
-          </ul>
-        </div>
-</nav>
+<%= render "layouts/public_navbar" %>
 <div class="row">
     <div class="col-xs-4 col-xs-offset-2 product-show">
       <%= attachment_image_tag(@item, :image, size: "340x340", fallback: "no_image.jpg" ) %>
     </div>
-    <h2><%= @item.name %></h2>
-    <p>¥ <%= @item.price.to_i*1.08(:dalimited) %>(税込)</p><br>
+    <h2><%= @item.name %></h2><br>
+    <p>¥ <%= @item.with_tax_price.to_s(:delimited) %>(税込)</p><br>
     <p><%= @item.introduction %></p><br>
-     <% if @item.is_sale == true %>
+      <% if @item.is_active == true %>
           <% if @item.genre.is_valid == true %>
             <%= form_for(@cart_item , url: customers_cart_items_path, method: :post) do |f| %>
               <%= f.hidden_field :item_id, value: @item.id %>
-              <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+              <%= f.select :amonut, options_for_select((1..10).to_a), include_blank: "個数選択" %>
               <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
-            <% end %>
-          <% else %>
-            <h3>販売終了</h3>
           <% end %>
-        <% elsif @item.is_sale == false %>
-          <h3>販売終了</h3>
-        <% end %>
-    
+          <% else %>
+            <h3>販売中</h3>
+          <% end %>
+      <% elsif @item.is_active == false %>
+        <h3>販売停止</h3>
+      <% end %>
 </div>

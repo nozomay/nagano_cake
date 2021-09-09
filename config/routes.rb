@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     registrations: 'admin/registrations'
   }
   namespace :admin do
-    #resources :homes, only: [:top]
     root 'homes#top', as: :root
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -15,10 +14,10 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
   end
   #public
-  devise_for :publics, controllers: {
-    sessions: 'publics/sessions',
-    passwords: 'publics/passwords',
-    registrations: 'publics/registrations'
+  devise_for :customers, controllers: {
+    sessions: 'public/sessions',
+    passwords: 'public/passwords',
+    registrations: 'public/registrations'
   }
     root to: 'public/homes#top'
     get 'about' => 'public/homes#about'
