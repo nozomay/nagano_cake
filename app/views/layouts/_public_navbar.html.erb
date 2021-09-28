@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <%= link_to "NAGANO CAKE", root_path, class: "text-decoration-none" %>
+    <%= link_to image_tag("logo.png"), root_path %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -8,7 +8,7 @@
               <% if customer_signed_in? %>
                 <li>ようこそ、<%= current_customer.last_name %><%= current_customer.first_name %>さん！</li>
                 <li>
-                  <%= link_to "マイページ", root_path, class: "text-light px-2" %>
+                  <%= link_to "マイページ", customers_path(current_customer), class: "text-light px-2" %>
                 </li>
                 <li>
                   <%= link_to "商品一覧", items_path, class: "text-light px-2" %>

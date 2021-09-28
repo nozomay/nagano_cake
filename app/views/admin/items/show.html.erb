@@ -37,9 +37,9 @@
         <div class="field">
           <p>
             販売ステータス：
-            <% if @item.is_active == false %>
+            <% if @item.is_active == true %>
       		    販売中
-      		  <% elsif @item.is_active == true %>
+      		  <% elsif @item.is_active == false %>
       		    販売停止
       		  <% end %>
           </p>

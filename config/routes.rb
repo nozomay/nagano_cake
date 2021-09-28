@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   #public
   devise_for :customers, controllers: {
     sessions: 'public/sessions',
-    passwords: 'public/passwords',
+    passwords: 'publics/passwords',
     registrations: 'public/registrations'
   }
     root to: 'public/homes#top'
@@ -40,7 +40,7 @@ Rails.application.routes.draw do
           get 'thanks'
         end
       end
-      resources :shipping_addresser, only: [:index, :edit, :create, :update, :destroy]
+      resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
     end
 end
 
