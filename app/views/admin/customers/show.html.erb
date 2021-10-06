@@ -5,7 +5,7 @@
   <body>
     <div class="border col-7">
         <br>
-        <h1>顧客一覧</h1>
+        <h1>顧客詳細画面</h1>
         <div class="field">
           <p>
             顧客名：
@@ -44,11 +44,12 @@
         <br>
         <div class="field">
           <p>
-            退会ステータス:<% if @customer.is_active == true %>
-            <span>　<i class="fas fa-bullseye blue"></i>退会済
-          <% elsif @customer.is_active == false %>
-            　<i class="fas fa-bullseye red"></i>有効会員</span>
-          <% end %>
+            退会ステータス:
+            <% if @customer.is_active == true %>
+              退会済み
+            <% elsif @customer.is_active == false %>
+              　有効会員
+            <% end %>
           </p>
         </div>
         <br>

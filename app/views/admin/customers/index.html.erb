@@ -16,9 +16,19 @@
           <% @customers.each do |customer| %>
             <tr>
               <td><%= customer.id %></td>
-              <td><%= customer.name %></td>
+              <td>
+                <%= link_to admin_customer_path(customer), class: "btn-link" do %>
+                  <%= customer.last_name %> <%= customer.first_name %>
+                <% end %>
+              </td>
               <td><%= customer.email %></td>
-              <td><%= customer.is_active %></td>
+              <td>
+                <% if customer.is_active == true %>
+                  退会済み
+                <% elsif customer.is_active == false %>
+                  有効会員
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

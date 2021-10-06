@@ -1,10 +1,9 @@
 <%= render "layouts/public_navbar" %>
-<!--配送先hennsyuu画面-->
 <div class="container">
   <div class="row">
-		<h2>配送先編集</h2>
+	<h2>配送先編集</h2>
   	  <div class="col-4">
-      <%= form_with model:@address, local:true do |f| %>
+      <%= form_with model: @shipping_address, url: shipping_address_path(@shipping_address), local:true do |f| %>
          <div class="shipping_addres col-xs-10">
                 <div class="form-group col-xs-12">
                     <%= f.label :"郵便番号(ハイフンなし)" ,class: "col-xs-3 control-label" %>

@@ -2,20 +2,20 @@ class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @customers = Public.all.page(params[:page]).reverse_order
+    @customers = Customer.page(params[:page]).reverse_order
   end
 
   def show
-    @customer = Public.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def edit
-    @customer = Public.find(params[:id])
+    @customer = Customer.find(params[:id])
 
   end
 
   def update
-    @customer = Public.find(params[:id])
+    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       flash[:notice] = "会員情報を変更しました"
       redirect_to admin_customer_path

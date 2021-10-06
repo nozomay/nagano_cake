@@ -1,0 +1,51 @@
+<!--情報確認-->
+<div class="container">
+  <div class="row">
+		<h2>注文情報確認画面</h2>
+		<div class="col-xs-9">
+      <table class="table table-hover table-inverse table-bordered">
+        <thead>
+          <tr class="info">
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+      <% @order.total_payment = 0 %>
+    		<% @cart_items.each do |cart_item| %>
+          <td><%= cart_item.item.name %></td> <!-- 商品名 -->
+          <td><%= cart_item.item.with_tax_price %></td>　<!-- 金額 -->
+          <td><%= cart_item.amount %></td> <!-- 個数 -->
+          <td><%= cart_item.subtotal %></td> <!-- 小計 -->
+          <% @order.total_payment += (cart_item.item.price * 1.1 * cart_item.amount).floor %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <thead>
+      <tr class="info">
+        <th>送料</th>
+        <th>商品合計</th>
+        <th>請求金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <td><%= 800 %></td>
+      <td><%= @order.total_payment %></td>
+      <td><%= @order.total_payment + 800 %></td>
+    </tbody>
+<p>支払方法</p>
+<%= @order.payment_method %>
+<p>お届け先</p>
+<%= @order.address %>
+<%= @order.name %>様
+
+<!-- ユーザーには注文確定ボタンだけ表示 -->
+<%= form_with model: @order, url: orders_path, local: true do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :total_payment %>
+  <%= f.submit "注文を確定する" %>
+<% end %>
