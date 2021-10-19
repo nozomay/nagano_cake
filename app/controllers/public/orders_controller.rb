@@ -28,13 +28,27 @@ class Public::OrdersController < ApplicationController
 
   end
 
-  def thanks #注文完了画面
+  def create #注文確定処理
+    @cart_items =current_customer.cart_items.all
+    @order = current_customer.orders.new(order_params)
+    if @order.save
+      @cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.item_id = cart_item.item_id
+        order_detail.order_id = @order.id
+        order_detail.amount = cart_item.amount
+        order_detail.price = cart_item.item.price
+        order_detail.save
+      end
+      redirect_to thanks_orders_path
+      @cart_items.destroy_all
+    else
+      @order = Order.new(order_params)
+      render :new
+    end
   end
 
-  def create #注文確定処理
-    @order = current_customer.orders.new(order_params)
-    @order.save
-    redirect_to thanks_orders_path
+  def thanks #注文完了画面
   end
 
   def index #注文履歴画面
@@ -48,7 +62,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
+    params.require(:order).permit(:status, :payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
   end
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)

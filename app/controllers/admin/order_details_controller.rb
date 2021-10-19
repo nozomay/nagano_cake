@@ -1,8 +1,8 @@
 class Admin::OrderDetailsController < ApplicationController
-  before_action :authenticate_!
+  before_action :authenticate_admin!
 
   def update
-    @order_detail = OrderDtail.finf(params[:id])
+    @order_detail = OrderDetail.finf(params[:id])
     if @order_detail.update(order_detail_params)
         flash[:notice] = "製作ステータスを変更しました"
         redirect_to admin_order_path(@order_detail)
@@ -10,10 +10,10 @@ class Admin::OrderDetailsController < ApplicationController
         render :show
     end
   end
-  
+
   private
-  
+
   def order_detail_params
-    params.require(:order_detail).permit(:status)
+    params.require(:order_detail).permit(:making_status)
   end
 end

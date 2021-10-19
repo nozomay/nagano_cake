@@ -9,7 +9,7 @@
           <tr class="info">
             <th>注文日</th>
             <th>配送先</th>
-            <th>注文商品</th>
+            <th>注文ステータス</th>
             <th>支払金額</th>
             <th>注文詳細</th>
           </tr>
@@ -19,16 +19,12 @@
   		      <tr>
               <td><%= order.created_at.strftime('%Y年%m月%d日') %></td>
               <td>
-                〒<%= order.ship_postal_code %><br>
-                <%= order.ship_address %><br>
-                <%= order.last_name %><%= order.first_name %> 様
+                〒<%= order.postal_code %><br>
+                <%= order.address %><br>
+                <%= order.name %> 様
               </td>
-              <td>
-                <% order.ordered_items.each do |item| %>
-        					<%= item.product.name %><br>
-        				<% end %>
-              </td>
-              <td><%= addTax(order.ordered_items.sum(:price)) %>円</td>
+              <td><%= order.status_i18n %></td>
+              <td>¥<%= order.total_payment %></td>
         			<td><%= link_to order_path(order), class: "btn btn-success" do %>表示する<% end %></td>
         		</tr>
             <% end %>
@@ -37,4 +33,3 @@
       </table>
 	</div>
 </div>
-		

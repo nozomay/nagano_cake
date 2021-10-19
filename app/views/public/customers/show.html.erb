@@ -1,10 +1,12 @@
 <%= render "layouts/public_navbar" %>
 <div class="container">
-  <div class="row">
-		<h2>マイページ</h2>
-		<p><strong class="information-link"><i class="far fa-user"></i>登録情報</strong>
-			<%= link_to " 編集する", edit_customers_path(@customer), class: "glyphicon glyphicon-pencil btn btn-success" %>
-		</p>
+	<h2>My page</h2>
+		<div class="row">
+			<div class="container">
+			<div class="text-right">
+				<%= link_to " 編集する", edit_customers_path(@customer), class: "glyphicon glyphicon-pencil btn btn-success" %>
+			</div>
+    	</div>
 
 			<table class="table table-bordered table-condensed" >
 				<tbody>
@@ -34,14 +36,15 @@
 					</tr>
 				</tbody>
 			</table>
-
-			<div class="mypage-bottoms">
-				<P><strong class="shipping-link">配送先</strong>
-					<%= link_to " 一覧を見る", shipping_addresses_path, data: {"turbolinks" => false}, class: "glyphicon glyphicon-folder-open btn btn-info" %>
-				</p>
-				<p><strong class="order-link">注文履歴</strong>
-					<%= link_to " 一覧を見る", orders_path(id: @customer.id), class: "glyphicon glyphicon-folder-open btn btn-info" %>
-				</p>
+			<div class="container">
+				<div class="row justify-content-around">
+					<div class="col-md-4">
+						<%= link_to " 配送先一覧", shipping_addresses_path, data: {"turbolinks" => false}, class: "glyphicon glyphicon-folder-open btn btn-info" %>
+					</div>
+					<div class="col-md-">
+						<%= link_to " 注文履歴一覧", orders_path(id: @customer.id), class: "glyphicon glyphicon-folder-open btn btn-info" %>
+					</div>
+				</div>
 			</div>
 	</div>
 </div>
