@@ -2,9 +2,16 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-    <div class="border col-7">
+    <div class="border col-12">
         <br>
         <h2>商品詳細</h2>
+        <br>
+          <% if flash[:notice] %>
+              <div class="flash">
+                <%= flash[:notice] %>
+              </div>
+          <% end %>
+        <br>
         <div class="img_field">
           <p>
             <%= attachment_image_tag @item, :image, :fill, 400, 300, format: 'jpeg', fallback: "20200501_noimage.jpg" %>

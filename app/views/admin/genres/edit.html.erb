@@ -1,8 +1,17 @@
+<%= render "layouts/admin_navbar" %>
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1>管理者画面</h1>
       <h2>ジャンル編集</h2>
+        <br>
+            <% if @genre.errors.any? %>
+                <%= @genre.errors.count %>件のエラーが発生しました
+                <% @genre.errors.full_messages.each do |message| %>
+                    <%= message %>
+                <% end %>
+            <% end %>
+        <br>
+
       <%= form_with model:@genre, url: admin_genres_path, local:true do |f| %>
         <div class="form-group">
           <label>ジャンル名：</label>

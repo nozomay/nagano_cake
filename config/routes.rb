@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get 'about' => 'public/homes#about'
     scope module: :public do
       resources :items, only: [:index, :show]
-      resource :customers, only: [:show, :edit, :update,] do
+      resource :customers, only: [:show, :edit, :update] do
         collection do
           get 'quit'
           patch 'out'

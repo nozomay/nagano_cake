@@ -1,6 +1,13 @@
 <%= render "layouts/public_navbar" %>
 <div class="container">
 	<h2>My page</h2>
+		<br>
+	        <% if flash[:notice] %>
+	            <div class="flash">
+	              <%= flash[:notice] %>
+	            </div>
+	        <% end %>
+      	<br>
 		<div class="row">
 			<div class="container">
 			<div class="text-right">

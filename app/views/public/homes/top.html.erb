@@ -3,20 +3,23 @@
     <div class="row">
       <div class="col-12">
         <h1 class="text-center">NAGANO CAKE</h1>
-          <!--ナビゲーション-->
+          <br>
+  	        <% if flash[:notice] %>
+  	            <div class="flash">
+  	              <%= flash[:notice] %>
+  	            </div>
+  	        <% end %>
+        	<br>
           <nav class="navbar">
             <ul class="container">
               <li class="col-3 list-unstyled text-center"><%= link_to "About", about_path %></li>
               <li class="col-3 list-unstyled text-center"><%= link_to "Shop", items_path %></li>
             </ul>
           </nav>
-      <!--col-12-->
       </div>
-    <!--row-->
     </div>
-  <!--container-->
   </div>
   <div class="text-center">
-    <%= link_to image_tag('sweets-887722_1280.jpg'), 'items_path' %>
+    <%= link_to image_tag('sweets-887722_1280.jpg'), items_path %>
   </div>
 </main>
