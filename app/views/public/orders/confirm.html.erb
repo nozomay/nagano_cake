@@ -1,53 +1,58 @@
 <div class="container">
   <div class="row">
-	  <h2>注文情報確認画面</h2>
-	 </div>
-		<div class="row d-flex align-items-center">
-  		<div class="col-sm-8">
-        <table class="table table-bordered">
-          <thead>
-            <tr class="info">
-              <th style="width: 50%">商品名</th>
-              <th style="width: 20%">単価(税込)</th>
-              <th style="width: 10%">数量</th>
-              <th style="width: 50%">小計</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @order.total_payment = 0 %>
-      		<% @cart_items.each do |cart_item| %>
-        		<tr class="info">
-              <td>
-                <%= attachment_image_tag cart_item.item, :image, :fill, 40, 40 %>
-                <%= cart_item.item.name %>
-              </td> <!-- 商品名 -->
-              <td><%= cart_item.item.with_tax_price %></td>　<!-- 金額 -->
-              <td><%= cart_item.amount %></td> <!-- 個数 -->
-              <td><%= cart_item.subtotal %></td> <!-- 小計 -->
-              <% @order.total_payment += (cart_item.item.price * 1.1 * cart_item.amount).floor %>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
-  		<div class="col-sm-4">
-        <table class="table table-bordered" style="width: 50%">
-          <thead>
-            <tr>
-              <th>送料</th><td>¥<%= 800 %></td>
-            </tr>
-            <tr>
-              <th>商品合計</th><td>¥<%= @order.total_payment %></td>
-            </tr>
-            <tr>
-              <th>請求金額</th><td>¥<%= @order.total_payment + 800 %></td>
-            </tr>
-          </thead>
-        </table>
-      </div>
+    <div class="col-lg-12">
+      <br>
+	    <h2>注文情報確認画面</h2>
     </div>
+	</div>
+	<div class="row d-flex align-items-center">
+		<div class="col-sm-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="info">
+            <th style="width: 50%">商品名</th>
+            <th style="width: 20%">単価(税込)</th>
+            <th style="width: 10%">数量</th>
+            <th style="width: 50%">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @order.total_payment = 0 %>
+    		<% @cart_items.each do |cart_item| %>
+      		<tr class="info">
+            <td>
+              <%= attachment_image_tag cart_item.item, :image, :fill, 40, 40 %>
+              <%= cart_item.item.name %>
+            </td> <!-- 商品名 -->
+            <td><%= cart_item.item.with_tax_price %></td>　<!-- 金額 -->
+            <td><%= cart_item.amount %></td> <!-- 個数 -->
+            <td><%= cart_item.subtotal %></td> <!-- 小計 -->
+            <% @order.total_payment += (cart_item.item.price * 1.1 * cart_item.amount).floor %>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+		<div class="col-sm-4">
+      <table class="table table-bordered" style="width: 50%">
+        <thead>
+          <tr>
+            <th>送料</th><td>¥<%= 800 %></td>
+          </tr>
+          <tr>
+            <th>商品合計</th><td>¥<%= @order.total_payment %></td>
+          </tr>
+          <tr>
+            <th>請求金額</th><td>¥<%= @order.total_payment + 800 %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
     <div class="row justify-content-start">
-      <h4>支払方法</h4>
+      <div class="col-lg-12">
+        <h4>支払方法</h4>
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-10">
@@ -55,7 +60,9 @@
       </div>
     </div>
     <div class="row justify-content-start">
-      <h4>お届け先</h4>
+      <div class="col-lg-12">
+        <h4>お届け先</h4>
+      </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-10">
@@ -71,7 +78,7 @@
         <%= f.hidden_field :postal_code %>
         <%= f.hidden_field :address %>
         <%= f.hidden_field :total_payment %>
-        <%= f.submit "注文を確定する" %>
+        <%= f.submit "注文を確定する", class: "btn btn-success" %>
       <% end %>
     </div>
 </div>

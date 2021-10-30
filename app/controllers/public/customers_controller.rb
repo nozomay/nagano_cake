@@ -6,8 +6,8 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = current_customer
-    @customer = Customer.find(params[:id])
+     @customer = current_customer
+     @customer = Customer.find(params[:id])
   end
 
   def update
@@ -27,7 +27,7 @@ class Public::CustomersController < ApplicationController
 
   def out #顧客の退会処理(ステータスの更新)
     @customer = current_customer
-    @customer = update(is_active: true)
+    @customer.update(is_active: true)
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path

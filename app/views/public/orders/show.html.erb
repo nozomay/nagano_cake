@@ -1,33 +1,36 @@
 <%= render "layouts/public_navbar" %>
 <div class="container">
   <div class="row">
-		<h2>注文履歴詳細画面</h2>
+    <div class="col-lg-12">
+      <br>
+		  <h2>注文履歴詳細画面</h2>
+		</div>
 	</div>
 	<div class="row">
 		<table class="table table-hover table-inverse">
-  		  <div class="col-4">
+  	  <div class="col-4">
   		  <thead>
           <table class="table table-bordered ">
-          		<tr>
-          			<th>注文日</th>
-          			<td><%= @order.created_at.strftime('%Y年%m月%d日') %></td>
-          		</tr>
-          		<tr>
-          			<th>配送先</th>
-          			<td>
-          				〒<%= @order.postal_code %><br>
-          				<%= @order.address %><br>
-          				<%= @order.name %> 様
-          			</td>
-          		</tr>
-          		<tr>
-          			<th>支払い方法</th>
-          			<td><%= @order.payment_method_i18n %></td>
-          		</tr>
-          		<tr>
-          			<th>注文ステータス</th>
-          			<td><%= @order.status_i18n %></td>
-          		</tr>
+        		<tr>
+        			<th>注文日</th>
+        			<td><%= @order.created_at.strftime('%Y年%m月%d日') %></td>
+        		</tr>
+        		<tr>
+        			<th>配送先</th>
+        			<td>
+        				〒<%= @order.postal_code %><br>
+        				<%= @order.address %><br>
+        				<%= @order.name %> 様
+        			</td>
+        		</tr>
+        		<tr>
+        			<th>支払い方法</th>
+        			<td><%= @order.payment_method_i18n %></td>
+        		</tr>
+        		<tr>
+        			<th>注文ステータス</th>
+        			<td><%= @order.status_i18n %></td>
+        		</tr>
           </table>
           <h4>ご請求金額内訳</h4>
           <table class="table table-bordered ">
@@ -48,21 +51,27 @@
           </table>
           <h4>注文内容</h4>
           <table class="table table-bordered">
-            <% @order_details.each do |order_detail| %>
-          		<tr>
-          			<th>商品名</th>
-            			<td><%= order_detail.item.name %></td>
-          			<th>ご注文数</th>
-          			  <td><%= order_detail.amount %>個</td>
-          		</tr>
-          		<% end %>
+          		<thead>
+            		<tr>
+            			<th>商品名</th>
+            			<th>ご注文数</th>
+            		</tr>
+          		</thead>
+          		<tbody>
+          		  <% @order_details.each do |order_detail| %>
+          		    <tr>
+          		      <td><%= order_detail.item.name %></td>
+            			  <td><%= order_detail.amount %>個</td>
+          		    </tr>
+          		  <% end %>
+          		</tbody>
           </table>
           <br>
           <%= link_to orders_path(id: @order.customer_id) do %>
           	<span class="glyphicon glyphicon-chevron-left">注文一覧に戻る</span>
           <% end %>
         </thead>
-        </div>
+      </div>
     </table>
   </div>
 </div>

@@ -16,11 +16,16 @@ class ApplicationController < ActionController::Base
 
         #ログアウト後のリダイレクト先
         def after_sign_out_path_for(resource)
-            case resource
-            when current_customer
-                new_customer_session_path
-            when current_admin
+            # case resource
+            # when :customer
+            #     new_customer_session_path
+            # when :admin
+            #     new_admin_session_path
+            # end
+            if resource == :admin
                 new_admin_session_path
+            else
+                new_customer_session_path
             end
         end
 
