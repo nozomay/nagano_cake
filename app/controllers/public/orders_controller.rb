@@ -52,7 +52,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def index #注文履歴画面
-    @orders = Order.all
+    #@orders = Order.all
+    @orders = current_customer.orders
   end
 
   def show #注文履歴詳細画面
@@ -66,5 +67,10 @@ class Public::OrdersController < ApplicationController
   end
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
+  end
+  def authenticate_customer
+    unless Order.find(params[:id]).customer_id == current_customer.id
+    redirect_to root_path unless @customer == current_customer
+    end
   end
 end

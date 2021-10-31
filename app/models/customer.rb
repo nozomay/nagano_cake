@@ -12,4 +12,9 @@ class Customer < ApplicationRecord
   validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :postal_code, numericality: {only_integer: true}, format: {with: /\A\d{3}[-]\d{4}$|^\d{3}[-]\d{2}$|^\d{3}$|^\d{5}$|^\d{7}\z/}
   validates :telephone_number, numericality: { only_integer: true }
+
+  def active_for_authentication?
+    super && (self.is_active == false)
+  end
+
 end
