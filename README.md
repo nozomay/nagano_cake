@@ -77,12 +77,3 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
  - 注文ステータス、製作ステータスの更新ができる
 ## 開発環境
 Ruby on Rails
-
-
-## インストール
-` ` `
-$ git clone https://github.com/nozomay/nagano_cake.git
-$ cd awesome-tool
-$ sh setup.sh
-$ ~do anything~ 
-` ` ` 
