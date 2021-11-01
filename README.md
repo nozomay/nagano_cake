@@ -80,7 +80,7 @@ Ruby on Rails
 
 
 ## インストール
-$ git clone git@github.com:nozomay/nagano_cake.git
+$ git clone https://github.com/nozomay/nagano_cake.git
 $ cd awesome-tool
 $ sh setup.sh
 $ ~do anything~
